@@ -1,4 +1,4 @@
-package com.intrapp.interna.godfather.domain
+package com.intrapp.interna.adoptions.domain.entities
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

@@ -1,4 +1,4 @@
-package com.intrapp.interna.adoption.domain
+package com.intrapp.interna.adoptions.domain.entities
 
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
@@ -19,6 +19,15 @@ data class Adoption(
 
     @Column(name = "id_representante")
     var representativeId: Long,
+
+    @Column(name = "id_tree")
+    var treeId: Long,
+
+    @Column(name = "distrito")
+    var district: String,
+
+    @Column(name = "barrio")
+    var neigh: String,
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
