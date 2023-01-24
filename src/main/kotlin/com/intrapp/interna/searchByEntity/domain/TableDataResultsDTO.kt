@@ -1,6 +1,6 @@
-package com.intrapp.interna.adoptions.domain.dtos
+package com.intrapp.interna.searchByEntity.domain
 
-data class TableDataResults(
+data class TableDataResultsDTO(
     var adoptionDate: String,
     val adoptionID: Long,
     val godfatherName: String,

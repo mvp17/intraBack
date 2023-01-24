@@ -1,6 +1,6 @@
-package com.intrapp.interna.adoptions.domain.repositories
+package com.intrapp.interna.adoption.domain
 
-import com.intrapp.interna.adoptions.domain.entities.Adoption
+import com.intrapp.interna.adoption.domain.Adoption
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository

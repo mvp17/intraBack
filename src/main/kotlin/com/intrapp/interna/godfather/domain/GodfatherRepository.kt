@@ -1,6 +1,6 @@
-package com.intrapp.interna.adoptions.domain.repositories
+package com.intrapp.interna.godfather.domain
 
-import com.intrapp.interna.adoptions.domain.entities.Godfather
+import com.intrapp.interna.godfather.domain.Godfather
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository

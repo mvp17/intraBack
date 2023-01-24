@@ -1,4 +1,4 @@
-package com.intrapp.interna.adoptions.domain.entities
+package com.intrapp.interna.tree.domain
 
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
