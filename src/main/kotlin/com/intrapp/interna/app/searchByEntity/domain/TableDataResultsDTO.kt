@@ -2,7 +2,7 @@ package com.intrapp.interna.app.searchByEntity.domain
 
 data class TableDataResultsDTO(
     var adoptionDate: String,
-    val adoptionID: Long,
+    val adoptionId: Long,
     val godfatherName: String,
     val godfatherGender: String,
     val godfatherBirthday: String,

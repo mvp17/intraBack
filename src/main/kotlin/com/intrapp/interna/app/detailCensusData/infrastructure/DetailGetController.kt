@@ -33,7 +33,6 @@ class DetailGetController(
         val consent = consentSearch.findConsentByRepresentativeId(adoption.representativeId)
         val censusAddress = censusAddressSearch.findCensusAddressByRepresentativeId(adoption.representativeId)
         val bdcLocation = bdcLocationSearch.findBDCLocationByRepresentativeId(adoption.representativeId)
-
         return ResponseDTO(godfather, representative, adoption, tree, consent, censusAddress, bdcLocation)
     }
 }

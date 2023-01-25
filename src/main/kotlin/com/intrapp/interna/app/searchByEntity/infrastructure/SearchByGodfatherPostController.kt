@@ -18,12 +18,9 @@ class SearchByGodfatherPostController(
     private val adoptionService: AdoptionSearch,
     private  val treeService: TreeSearch
     ) {
-
     @PostMapping
-    fun getAllAdoptionsByGodfather(@RequestBody filter: FilterJSONGodfatherDTO):
-            ResponseDTO {
+    fun getAllAdoptionsByGodfather(@RequestBody filter: FilterJSONGodfatherDTO): ResponseDTO {
         val tableDataResultsList: MutableList<TableDataResultsDTO> = mutableListOf()
-
         val godfathers = godfatherService.searchByGodfatherName(filter.name)
         for (godfather in godfathers) {
             val adoptions = adoptionService.findAdoptionsByGodfatherId(godfather.id)
@@ -44,5 +41,4 @@ class SearchByGodfatherPostController(
         val totalRecords: Int = tableDataResultsList.size
         return ResponseDTO(tableDataResultsList, totalRecords)
     }
-
 }
