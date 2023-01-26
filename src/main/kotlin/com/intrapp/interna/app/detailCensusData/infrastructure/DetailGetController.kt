@@ -1,6 +1,6 @@
 package com.intrapp.interna.app.detailCensusData.infrastructure
 
-import com.intrapp.interna.entities.adoption.application.AdoptionSearch
+import com.intrapp.interna.entities.adoption.application.SearchAdoptionById
 import com.intrapp.interna.entities.consent.application.ConsentSearch
 import com.intrapp.interna.app.detailCensusData.domain.ResponseDTO
 import com.intrapp.interna.entities.bdcLocation.application.BDCLocationSearch
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping(path = ["api/v1/detailCensus/adoption"])
 class DetailGetController(
     private val godfatherSearch: GodfatherSearch,
-    private val adoptionSearch: AdoptionSearch,
+    private val searchAdoptionById: SearchAdoptionById,
     private val representativeSearch: RepresentativeSearch,
     private val treeSearch: TreeSearch,
     private val consentSearch: ConsentSearch,
@@ -26,7 +26,7 @@ class DetailGetController(
     ) {
     @GetMapping("/{id}")
     fun getDetailCensusDataForAdoptionByAdoptionId(@PathVariable id: Long): ResponseDTO {
-        val adoption = adoptionSearch.findAdoptionById(id)
+        val adoption = searchAdoptionById.findAdoptionById(id)
         val godfather = godfatherSearch.findGodfatherById(adoption.godfatherId)
         val representative = representativeSearch.findRepresentativeById(adoption.representativeId)
         val tree = treeSearch.findTreeById(adoption.treeId)
