@@ -1,10 +1,11 @@
 package com.intrapp.interna.app.searchByEntity.infrastructure
 
-import com.intrapp.interna.entities.adoption.application.SearchAdoptionById
+import com.intrapp.interna.app.searchByEntity.application.SearchByAdoption
+import com.intrapp.interna.app.searchByEntity.application.SearchByGodfather
 import com.intrapp.interna.app.searchByEntity.domain.FilterJSONGodfatherDTO
 import com.intrapp.interna.app.searchByEntity.domain.ResponseDTO
 import com.intrapp.interna.app.searchByEntity.domain.TableDataResultsDTO
-import com.intrapp.interna.entities.godfather.application.GodfatherSearch
+import com.intrapp.interna.entities.godfather.domain.Godfather
 import com.intrapp.interna.entities.tree.application.TreeSearch
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -14,16 +15,16 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping(path = ["api/v1/searchByGodfather"])
 class SearchByGodfatherPostController(
-    private val godfatherService: GodfatherSearch,
-    private val searchAdoptionById: SearchAdoptionById,
+    private val searchByAdoption: SearchByAdoption,
+    private val searchByGodfather: SearchByGodfather,
     private  val treeService: TreeSearch
     ) {
     @PostMapping
     fun getAllAdoptionsByGodfather(@RequestBody filter: FilterJSONGodfatherDTO): ResponseDTO {
         val tableDataResultsList: MutableList<TableDataResultsDTO> = mutableListOf()
-        val godfathers = godfatherService.searchByGodfatherName(filter.name)
+        val godfathers = getGodfathersByFilter(filter)
         for (godfather in godfathers) {
-            val adoptions = searchAdoptionById.findAdoptionsByGodfatherId(godfather.id)
+            val adoptions = searchByAdoption.searchAdoptionById.findAdoptionsByGodfatherId(godfather.id)
             for (adoption in adoptions) {
                 val tree = treeService.findTreeById(adoption.treeId)
                 val tableDataResultsDTO = TableDataResultsDTO(adoption.adoptionDate,
@@ -40,5 +41,15 @@ class SearchByGodfatherPostController(
         }
         val totalRecords: Int = tableDataResultsList.size
         return ResponseDTO(tableDataResultsList, totalRecords)
+    }
+
+    fun getGodfathersByFilter(filter: FilterJSONGodfatherDTO): List<Godfather> {
+        val godfathers: MutableList<Godfather> = mutableListOf()
+
+        if (filter.hasGodfatherId()) {
+            //godfathers.add()
+        }
+
+        return godfathers
     }
 }

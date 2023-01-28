@@ -1,11 +1,11 @@
 package com.intrapp.interna.entities.adoption.application
 
 import com.intrapp.interna.entities.adoption.domain.Adoption
-import com.intrapp.interna.entities.adoption.domain.SearchByAdoptionRepo
+import com.intrapp.interna.entities.adoption.domain.SearchByAdoptionAdoptionAdoptionAdoptionRepo
 import org.springframework.stereotype.Service
 
 @Service
-class SearchAdoptionByDates(private val searchByAdoptionRepo: SearchByAdoptionRepo) {
+class SearchAdoptionByDates(private val searchByAdoptionRepo: SearchByAdoptionAdoptionAdoptionAdoptionRepo) {
     fun findAdoptionsByAdoptionFromDate(date: String): MutableList<Adoption> {
         return searchByAdoptionRepo.findAdoptionsByFromDate(date)
     }

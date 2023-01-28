@@ -4,7 +4,7 @@ import com.intrapp.interna.entities.adoption.domain.Adoption
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
-interface SearchByDistrictRepo: JpaRepository<Adoption, Long> {
+interface SearchByAdoptionDistrictRepo: JpaRepository<Adoption, Long> {
     @Query("select a from Adoption a where a.district like %?1%")
     fun findAdoptionsByDistrict(district: String): MutableList<Adoption>
 

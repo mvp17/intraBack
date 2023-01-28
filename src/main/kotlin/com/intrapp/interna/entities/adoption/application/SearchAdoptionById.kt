@@ -1,13 +1,13 @@
 package com.intrapp.interna.entities.adoption.application
 
 import com.intrapp.interna.entities.adoption.domain.Adoption
-import com.intrapp.interna.entities.adoption.domain.SearchByAdoptionRepo
+import com.intrapp.interna.entities.adoption.domain.SearchByAdoptionAdoptionAdoptionAdoptionRepo
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 
 @Service
-class SearchAdoptionById(private val searchByAdoptionRepo: SearchByAdoptionRepo) {
+class SearchAdoptionById(private val searchByAdoptionRepo: SearchByAdoptionAdoptionAdoptionAdoptionRepo) {
     fun findAdoptionById(id: Long): Adoption {
         return searchByAdoptionRepo.findById(id)
             .orElseThrow {

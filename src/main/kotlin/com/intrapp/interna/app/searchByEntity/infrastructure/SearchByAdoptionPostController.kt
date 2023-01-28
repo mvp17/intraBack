@@ -2,7 +2,7 @@ package com.intrapp.interna.app.searchByEntity.infrastructure
 
 import com.intrapp.interna.app.searchByEntity.application.FilterUtils
 import com.intrapp.interna.app.searchByEntity.application.SearchByAdoption
-import com.intrapp.interna.entities.godfather.application.GodfatherSearch
+import com.intrapp.interna.app.searchByEntity.application.SearchByGodfather
 import com.intrapp.interna.app.searchByEntity.domain.FilterJSONAdoptionDTO
 import com.intrapp.interna.app.searchByEntity.domain.ResponseDTO
 import com.intrapp.interna.app.searchByEntity.domain.TableDataResultsDTO
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping(path = ["api/v1/searchByAdoption"])
 class SearchByAdoptionPostController(
-    private val godfatherService: GodfatherSearch,
+    private val searchByGodfather: SearchByGodfather,
     private val searchByAdoption: SearchByAdoption,
     private val filterUtils: FilterUtils,
     private val treeService: TreeSearch
@@ -27,7 +27,7 @@ class SearchByAdoptionPostController(
         val adoptions = getAdoptionsByFilter(filter)
         if (adoptions.isNotEmpty())
             for (adoption in adoptions) {
-                val godfather = godfatherService.findGodfatherById(adoption.godfatherId)
+                val godfather = searchByGodfather.searchGodfatherById.findGodfatherById(adoption.godfatherId)
                 val tree = treeService.findTreeById(adoption.treeId)
                 val tableDataResultsDTO = TableDataResultsDTO(adoption.adoptionDate,
                                                               adoption.id,

@@ -26,6 +26,12 @@ data class Godfather(
     @Column(name = "fecha_nacimiento")
     val birthday: String,
 
+    @Column(name = "distrito")
+    val district: String,
+
+    @Column(name = "barrio")
+    val neigh: String,
+
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     val id: Long

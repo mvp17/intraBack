@@ -6,11 +6,11 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface SearchByAdoptionRepo:
+interface SearchByAdoptionAdoptionAdoptionAdoptionRepo:
     JpaRepository<Adoption, Long>,
-    SearchByDatesRepo,
-    SearchByDistrictRepo,
-    SearchByNeighRepo,
+    SearchByAdoptionDatesRepo,
+    SearchByAdoptionDistrictRepo,
+    SearchByAdoptionNeighRepo,
     SearchByTreeNameRepo,
     SearchByTreeSpeciesRepo
 {

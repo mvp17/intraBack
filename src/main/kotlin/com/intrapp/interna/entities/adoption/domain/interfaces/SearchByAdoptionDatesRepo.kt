@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
 
-interface SearchByDatesRepo: JpaRepository<Adoption, Long> {
+interface SearchByAdoptionDatesRepo: JpaRepository<Adoption, Long> {
     @Query("select a from Adoption a where a.adoptionDate >= date(?1)")
     fun findAdoptionsByFromDate(date: String): MutableList<Adoption>
 
