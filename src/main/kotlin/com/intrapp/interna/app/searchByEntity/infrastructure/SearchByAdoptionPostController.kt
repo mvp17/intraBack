@@ -1,6 +1,6 @@
 package com.intrapp.interna.app.searchByEntity.infrastructure
 
-import com.intrapp.interna.app.searchByEntity.application.FilterUtils
+import com.intrapp.interna.app.searchByEntity.application.utils.AdoptionFilterUtils
 import com.intrapp.interna.app.searchByEntity.application.SearchByAdoption
 import com.intrapp.interna.app.searchByEntity.application.SearchByGodfather
 import com.intrapp.interna.app.searchByEntity.domain.FilterJSONAdoptionDTO
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 class SearchByAdoptionPostController(
     private val searchByGodfather: SearchByGodfather,
     private val searchByAdoption: SearchByAdoption,
-    private val filterUtils: FilterUtils,
+    private val adoptionFilterUtils: AdoptionFilterUtils,
     private val treeService: TreeSearch
     ) {
     @PostMapping
@@ -29,15 +29,17 @@ class SearchByAdoptionPostController(
             for (adoption in adoptions) {
                 val godfather = searchByGodfather.searchGodfatherById.findGodfatherById(adoption.godfatherId)
                 val tree = treeService.findTreeById(adoption.treeId)
-                val tableDataResultsDTO = TableDataResultsDTO(adoption.adoptionDate,
-                                                              adoption.id,
-                                                              godfather.name,
-                                                              godfather.gender,
-                                                              godfather.birthday,
-                                                              tree.commonName,
-                                                              tree.species,
-                                                              adoption.district,
-                                                              adoption.neigh)
+                val tableDataResultsDTO = TableDataResultsDTO(
+                    adoption.adoptionDate,
+                    adoption.id,
+                    godfather.name,
+                    godfather.gender,
+                    godfather.birthday,
+                    tree.commonName,
+                    tree.species,
+                    adoption.district,
+                    adoption.neigh
+                )
                 tableDataResultsList.add(tableDataResultsDTO)
             }
         val totalRecords = tableDataResultsList.size
@@ -52,21 +54,19 @@ class SearchByAdoptionPostController(
             return adoptions
         }
 
-        if (!filter.hasAdoptionFromDate() and !filter.hasAdoptionToDate())
-            return filterUtils.filterWhenNoDates(filter, adoptions)
-        else if (filter.hasTreeName()       ||
-            filter.hasTreeSpecies()         ||
-            filter.hasAdoptionDistrict()    ||
-            filter.hasAdoptionNeigh())
-        {
-            filterUtils.filterWhenTreeNameAndDates(filter, adoptions)
-            filterUtils.filterWhenTreeSpeciesAndDates(filter, adoptions)
-            filterUtils.filterWhenDistrictAndDates(filter, adoptions)
-            filterUtils.filterWhenNeighAndDates(filter, adoptions)
-            return adoptions.distinct()
-        }
-        else {
-            return filterUtils.filterWhenOnlyDates(filter, adoptions)
-        }
+        return if (!filter.hasAdoptionFromDate() and !filter.hasAdoptionToDate())
+            adoptionFilterUtils.filterWhenNoDates(filter, adoptions)
+        else if (
+            filter.hasTreeName()            or
+            filter.hasTreeSpecies()         or
+            filter.hasAdoptionDistrict()    or
+            filter.hasAdoptionNeigh()
+        ) {
+            adoptionFilterUtils.filterWhenTreeNameAndDates(filter, adoptions)
+            adoptionFilterUtils.filterWhenTreeSpeciesAndDates(filter, adoptions)
+            adoptionFilterUtils.filterWhenDistrictAndDates(filter, adoptions)
+            adoptionFilterUtils.filterWhenNeighAndDates(filter, adoptions)
+            adoptions.distinct()
+        } else adoptionFilterUtils.filterWhenOnlyDates(filter, adoptions)
     }
 }

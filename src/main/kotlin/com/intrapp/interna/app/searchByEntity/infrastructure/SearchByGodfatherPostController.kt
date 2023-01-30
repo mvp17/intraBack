@@ -1,5 +1,6 @@
 package com.intrapp.interna.app.searchByEntity.infrastructure
 
+import com.intrapp.interna.app.searchByEntity.application.utils.GodfatherFilterUtils
 import com.intrapp.interna.app.searchByEntity.application.SearchByAdoption
 import com.intrapp.interna.app.searchByEntity.application.SearchByGodfather
 import com.intrapp.interna.app.searchByEntity.domain.FilterJSONGodfatherDTO
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 class SearchByGodfatherPostController(
     private val searchByAdoption: SearchByAdoption,
     private val searchByGodfather: SearchByGodfather,
+    private val godfatherFilterUtils: GodfatherFilterUtils,
     private  val treeService: TreeSearch
     ) {
     @PostMapping
@@ -27,15 +29,17 @@ class SearchByGodfatherPostController(
             val adoptions = searchByAdoption.searchAdoptionById.findAdoptionsByGodfatherId(godfather.id)
             for (adoption in adoptions) {
                 val tree = treeService.findTreeById(adoption.treeId)
-                val tableDataResultsDTO = TableDataResultsDTO(adoption.adoptionDate,
-                                                           adoption.id,
-                                                           godfather.name,
-                                                           godfather.gender,
-                                                           godfather.birthday,
-                                                           tree.commonName,
-                                                           tree.species,
-                                                           adoption.district,
-                                                           adoption.neigh)
+                val tableDataResultsDTO = TableDataResultsDTO(
+                    adoption.adoptionDate,
+                    adoption.id,
+                    godfather.name,
+                    godfather.gender,
+                    godfather.birthday,
+                    tree.commonName,
+                    tree.species,
+                    adoption.district,
+                    adoption.neigh
+                )
                 tableDataResultsList.add(tableDataResultsDTO)
             }
         }
@@ -47,9 +51,28 @@ class SearchByGodfatherPostController(
         val godfathers: MutableList<Godfather> = mutableListOf()
 
         if (filter.hasGodfatherId()) {
-            //godfathers.add()
+            godfathers.add(searchByGodfather.searchGodfatherById.findGodfatherById(filter.godfatherId!!.toLong()))
+            return godfathers
         }
 
-        return godfathers
+        if (!filter.hasGodfatherBirthdayFromDate() and !filter.hasGodfatherBirthdayToDate())
+            return godfatherFilterUtils.filterWhenNoDates(filter, godfathers)
+        else if (
+            filter.hasGodfatherName()       or
+            filter.hasGodfatherLastName1()  or
+            filter.hasGodfatherLastName2()  or
+            filter.hasGodfatherGender()     or
+            filter.hasGodfatherDistrict()   or
+            filter.hasGodfatherNeigh()
+        ) {
+            godfatherFilterUtils.filterWhenNameAndDates(filter, godfathers)
+            godfatherFilterUtils.filterWhenLastName1AndDates(filter, godfathers)
+            godfatherFilterUtils.filterWhenLastName2AndDates(filter, godfathers)
+            godfatherFilterUtils.filterWhenGenderAndDates(filter, godfathers)
+            godfatherFilterUtils.filterWhenDistrictAndDates(filter, godfathers)
+            godfatherFilterUtils.filterWhenNeighAndDates(filter, godfathers)
+            return godfathers.distinct()
+        }
+        else return godfatherFilterUtils.filterWhenOnlyDates(filter, godfathers)
     }
 }
