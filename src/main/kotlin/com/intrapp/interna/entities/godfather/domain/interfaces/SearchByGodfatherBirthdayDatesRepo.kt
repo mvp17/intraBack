@@ -11,6 +11,6 @@ interface SearchByGodfatherBirthdayDatesRepo: JpaRepository<Godfather, Long> {
     @Query("select g from Godfather g where g.birthday <= date(?1)")
     fun findGodfathersByBirthdayToDate(date: String): MutableList<Godfather>
 
-    @Query("select g from Godfather g where g.birthday >= date(?1) and g.birthday <= date(?1)")
+    @Query("select g from Godfather g where g.birthday >= date(?1) and g.birthday <= date(?2)")
     fun findGodfathersByBirthdayFromDateAndBirthdayToDate(fromDate: String, toDate: String): MutableList<Godfather>
 }

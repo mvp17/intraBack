@@ -11,7 +11,7 @@ class TreeSearch(private val treeRepository: TreeRepository) {
     fun findTreeById(id: Long): Tree {
         return treeRepository.findById(id)
             .orElseThrow {
-                throw ResponseStatusException(HttpStatus.NOT_FOUND, "Godfather not found!")
+                throw ResponseStatusException(HttpStatus.NOT_FOUND, "Tree not found!")
             }
     }
 }

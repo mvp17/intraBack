@@ -1,4 +1,4 @@
-package com.intrapp.interna.entities.padronAddress.domain
+package com.intrapp.interna.entities.censusAddress.domain
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query

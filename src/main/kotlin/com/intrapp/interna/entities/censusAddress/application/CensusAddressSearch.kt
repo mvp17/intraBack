@@ -1,7 +1,7 @@
-package com.intrapp.interna.entities.padronAddress.application
+package com.intrapp.interna.entities.censusAddress.application
 
-import com.intrapp.interna.entities.padronAddress.domain.CensusAddress
-import com.intrapp.interna.entities.padronAddress.domain.CensusAddressRepository
+import com.intrapp.interna.entities.censusAddress.domain.CensusAddress
+import com.intrapp.interna.entities.censusAddress.domain.CensusAddressRepository
 import org.springframework.stereotype.Service
 
 @Service

@@ -35,11 +35,11 @@ data class BDCLocation(
     @Column(name = "ndp")
     val ndp: String,
 
-    @Column(name = "coordenada_x")
-    val xCoord: String,
+    @Column(name = "coord_x")
+    val xCoord: Float,
 
-    @Column(name = "coordenada_y")
-    val yCoord: String,
+    @Column(name = "coord_y")
+    val yCoord: Float,
 
     @Column(name = "distrito")
     val district: String,

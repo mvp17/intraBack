@@ -8,12 +8,12 @@ import com.intrapp.interna.app.searchByEntity.domain.ResponseDTO
 import com.intrapp.interna.app.searchByEntity.domain.TableDataResultsDTO
 import com.intrapp.interna.entities.adoption.domain.Adoption
 import com.intrapp.interna.entities.tree.application.TreeSearch
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @RestController
+@CrossOrigin(origins = ["http://localhost:4200"], exposedHeaders = ["Access-Control-Allow-Origin"])
 @RequestMapping(path = ["api/v1/searchByAdoption"])
 class SearchByAdoptionPostController(
     private val searchByGodfather: SearchByGodfather,
@@ -30,15 +30,15 @@ class SearchByAdoptionPostController(
                 val godfather = searchByGodfather.searchGodfatherById.findGodfatherById(adoption.godfatherId)
                 val tree = treeService.findTreeById(adoption.treeId)
                 val tableDataResultsDTO = TableDataResultsDTO(
-                    adoption.adoptionDate,
+                    LocalDate.parse(adoption.adoptionDate).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
                     adoption.id,
-                    godfather.name,
-                    godfather.gender,
-                    godfather.birthday,
-                    tree.commonName,
-                    tree.species,
-                    adoption.district,
-                    adoption.neigh
+                    godfather.name.uppercase(),
+                    godfather.gender.uppercase(),
+                    LocalDate.parse(godfather.birthday).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                    tree.commonName.uppercase(),
+                    tree.species.uppercase(),
+                    adoption.district.uppercase(),
+                    adoption.neigh.uppercase()
                 )
                 tableDataResultsList.add(tableDataResultsDTO)
             }

@@ -11,13 +11,7 @@ import jakarta.persistence.GenerationType
 @Table(name = "tree")
 data class Tree(
     @Column(name = "codigo_posicion_arbolada")
-    var treePositionID: Int,
-
-    @Column(name = "coordenada_x")
-    var xCoord: Double,
-
-    @Column(name = "coordenada_y")
-    var yCoord: Double,
+    var treePositionId: Int,
 
     @Column(name = "nombre_comun")
     var commonName: String,
@@ -26,7 +20,13 @@ data class Tree(
     var species: String,
 
     @Column(name = "distancia_padrino")
-    var godfatherDistance: String,
+    var godfatherDistance: Float,
+
+    @Column(name = "coord_x")
+    var xCoord: Float,
+
+    @Column(name = "coord_y")
+    var yCoord: Float,
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
