@@ -11,6 +11,7 @@ import com.intrapp.interna.entities.tree.application.TreeSearch
 import org.springframework.web.bind.annotation.*
 
 @RestController
+@CrossOrigin(origins = ["http://localhost:4200"])
 @RequestMapping(path = ["api/v1/detailCensus/adoption"])
 class DetailGetController(
     private val searchByGodfather: SearchByGodfather,
@@ -24,6 +25,7 @@ class DetailGetController(
     @GetMapping("/{id}")
     fun getDetailCensusDataForAdoptionByAdoptionId(@PathVariable id: Long): ResponseDTO {
         val adoption = searchAdoptionById.findAdoptionById(id)
+        // LocalDate.parse(adoption.adoptionDate).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
         val adoptionDTO = AdoptionDTO(adoption.id, adoption.adoptionDate)
         val godfather = searchByGodfather.searchGodfatherById.findGodfatherById(adoption.godfatherId)
         val representative = representativeSearch.findRepresentativeById(adoption.representativeId)

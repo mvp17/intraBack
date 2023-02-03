@@ -24,7 +24,7 @@ data class Godfather(
     val gender: String,
 
     @Column(name = "fecha_nacimiento")
-    val birthday: String,
+    var birthday: String,
 
     @Column(name = "distrito")
     val district: String,

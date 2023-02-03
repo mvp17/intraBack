@@ -8,7 +8,7 @@ data class BDCLocationDTO(
     val floor: String,
     val door: String,
     val zipCode: String,
-    val ndpBDCClass: String,
+    val ndpClass: String,
     val ndp: String,
     val xCoord: Number,
     val yCoord: Number,
