@@ -11,8 +11,8 @@ import com.intrapp.interna.entities.tree.application.TreeSearch
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@CrossOrigin(origins = ["http://localhost:4200"])
-@RequestMapping(path = ["api/v1/detailCensus/adoption"])
+//@CrossOrigin(origins = ["http://localhost:4200"])
+@RequestMapping("/api/v1/detailCensus/adoption")
 class DetailGetController(
     private val searchByGodfather: SearchByGodfather,
     private val searchAdoptionById: SearchAdoptionById,
