@@ -26,13 +26,4 @@ data class User(
     )
     @Column(name = "id")
     val id: Long
-): UserDetails {
-    override fun getAuthorities(): MutableSet<SimpleGrantedAuthority> =
-        Collections.singleton(SimpleGrantedAuthority("user"))
-    override fun getPassword() = pass_word
-    override fun getUsername() = email
-    override fun isAccountNonExpired() = true
-    override fun isAccountNonLocked() = true
-    override fun isCredentialsNonExpired()= true
-    override fun isEnabled() = true
-}
+)

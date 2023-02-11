@@ -1,4 +1,4 @@
-package com.intrapp.interna.app.login
+package com.intrapp.interna.app.login.domain
 
 import java.beans.ConstructorProperties
 

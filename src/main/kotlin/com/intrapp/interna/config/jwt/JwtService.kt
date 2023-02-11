@@ -2,7 +2,6 @@ package com.intrapp.interna.config.jwt
 
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import java.util.Date
 
@@ -24,14 +23,10 @@ class JwtService {
 
     fun getEmail(token: String): String = getClaims(token).subject
 
-    fun isTokenExpired(token: String): Boolean {
+    fun isTokenValid(token: String): Boolean {
         val claims = getClaims(token)
         val expirationDate = claims.expiration
         val now = Date(System.currentTimeMillis())
         return now.before(expirationDate)
-    }
-
-    fun isTokenValid(token: String, userDetails: UserDetails): Boolean {
-        return userDetails.username == getClaims(token).subject && !isTokenExpired(token)
     }
 }

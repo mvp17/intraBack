@@ -1,4 +1,4 @@
-package com.intrapp.interna.app.login
+package com.intrapp.interna.app.login.domain
 
 data class RegisterRequest(
     val username: String,
