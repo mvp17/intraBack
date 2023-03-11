@@ -13,7 +13,6 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @RestController
-//@CrossOrigin(origins = ["http://localhost:4200"])
 @RequestMapping("/api/v1/searchByGodfather")
 class SearchByGodfatherPostController(
     private val searchByAdoption: SearchByAdoption,
