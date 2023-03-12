@@ -1,10 +1,6 @@
 package com.intrapp.interna.config.user
 
 import jakarta.persistence.*
-import org.hibernate.annotations.DynamicInsert
-import org.springframework.security.core.authority.SimpleGrantedAuthority
-import org.springframework.security.core.userdetails.UserDetails
-import java.util.Collections
 
 @Entity
 @Table(name = "usuarios")
