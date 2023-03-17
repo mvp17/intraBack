@@ -14,4 +14,8 @@ class TreeSearch(private val treeRepository: TreeRepository) {
                 throw ResponseStatusException(HttpStatus.NOT_FOUND, "Tree not found!")
             }
     }
+
+    fun findTrees(): MutableList<Tree> {
+        return treeRepository.findAll()
+    }
 }
