@@ -1,9 +1,9 @@
 package com.intrapp.interna.config
 
-import com.intrapp.interna.config.jwt.JwtAuthenticationFilter
-import com.intrapp.interna.config.jwt.JwtAuthorizationFilter
-import com.intrapp.interna.config.jwt.JwtService
-import com.intrapp.interna.config.user.UserDetailsService
+import com.intrapp.interna.modules.login.application.jwt.JwtAuthenticationFilter
+import com.intrapp.interna.modules.login.application.jwt.JwtAuthorizationFilter
+import com.intrapp.interna.modules.login.application.jwt.JwtService
+import com.intrapp.interna.core.user.application.UserDetailsService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
