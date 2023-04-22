@@ -9,24 +9,24 @@ import jakarta.persistence.GenerationType
 
 
 @Entity
-@Table(name = "adoption")
+@Table(name = "adoptions")
 data class Adoption(
-    @Column(name = "fecha_adopcion")
+    @Column(name = "adoption_date")
     var adoptionDate: String,
 
-    @Column(name = "id_padrino")
+    @Column(name = "godfather_id")
     var godfatherId: Long,
 
-    @Column(name = "id_representante")
+    @Column(name = "representative_id")
     var representativeId: Long,
 
-    @Column(name = "id_tree")
+    @Column(name = "tree_id")
     var treeId: Long,
 
-    @Column(name = "distrito")
+    @Column(name = "district")
     var district: String,
 
-    @Column(name = "barrio")
+    @Column(name = "neigh")
     var neigh: String,
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)

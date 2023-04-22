@@ -9,27 +9,27 @@ import jakarta.persistence.GenerationType
 
 
 @Entity
-@Table(name = "godfather")
+@Table(name = "godfathers")
 data class Godfather(
-    @Column(name = "nombre")
+    @Column(name = "name")
     var name: String,
 
-    @Column(name = "apellido1")
+    @Column(name = "last_name1")
     var lastName1: String,
 
-    @Column(name = "apellido2")
+    @Column(name = "last_name2")
     var lastName2: String,
 
-    @Column(name = "genero")
+    @Column(name = "gender")
     val gender: String,
 
-    @Column(name = "fecha_nacimiento")
+    @Column(name = "birthday")
     var birthday: String,
 
-    @Column(name = "distrito")
+    @Column(name = "district")
     val district: String,
 
-    @Column(name = "barrio")
+    @Column(name = "neigh")
     val neigh: String,
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)

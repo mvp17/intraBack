@@ -8,37 +8,43 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 
 @Entity
-@Table(name = "consent")
+@Table(name = "consents")
 data class Consent(
-    @Column(name = "dato_consentimiento_padron")
+    @Column(name = "census_consent")
     var censusConsent: Boolean,
 
-    @Column(name = "fecha_consentimiento_padron")
+    @Column(name = "census_consent_date")
     var censusConsentDate: String,
 
-    @Column(name = "autorizacion_mayor_edad")
+    @Column(name = "adult_authorization")
     var adultAuthorization: Boolean,
 
-    @Column(name = "fecha_consentimiento_autorizacion_mayor_edad")
+    @Column(name = "adult_authorization_date")
     val adultAuthorizationConsentDate: String,
 
-    @Column(name = "tutor_legal")
+    @Column(name = "guardian")
     val guardian: Boolean,
 
-    @Column(name = "fecha_consentimiento_tutor_legal")
+    @Column(name = "guardian_date")
     val guardianConsentDate: String,
 
-    @Column(name = "visible_otros")
+    @Column(name = "visible_others")
     val visibleOthers: Boolean,
 
-    @Column(name = "fecha_consentimiento_visible_otros")
+    @Column(name = "visible_others_date")
     val visibleOthersConsentDate: String,
 
-    @Column(name = "comentario")
+    @Column(name = "comment")
     val comment: String,
 
-    @Column(name = "representante")
+    @Column(name = "representative_id")
     val representativeId: Long,
+
+    @Column(name = "godfather_id")
+    val godfatherId: Long,
+
+    @Column(name = "adoption_id")
+    val adoptionId: Long,
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
