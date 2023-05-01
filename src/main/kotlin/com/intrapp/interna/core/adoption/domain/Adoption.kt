@@ -17,6 +17,9 @@ data class Adoption(
     @Column(name = "godfather_id")
     var godfatherId: Long,
 
+    @Column(name = "distance_godfather")
+    var distance: Float,
+
     @Column(name = "representative_id")
     var representativeId: Long,
 

@@ -38,7 +38,7 @@ class DetailGetController(
             tree.species,
             adoption.district,
             adoption.neigh,
-            tree.godfatherDistance
+            adoption.distance
         )
         val consent = consentSearch.findConsentByRepresentativeId(adoption.representativeId)
         val censusAddress = censusAddressSearch.findCensusAddressByRepresentativeId(adoption.representativeId)
